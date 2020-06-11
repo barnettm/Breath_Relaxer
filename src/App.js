@@ -52,7 +52,7 @@ class App extends React.Component {
 
 
   render() {
-    const {totalTime, breathTime, holdTime, text, grow} = this.state;
+    const {text, grow} = this.state;
     return (
       <div className="App">
         <PageTitle />
