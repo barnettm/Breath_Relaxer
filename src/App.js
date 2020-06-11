@@ -1,26 +1,67 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import PageTitle from './components/PageTitle';
+import ClockContainer from './components/ClockContainer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  state = {
+    totalTime: 18000,
+    breathTime: 7000,
+    holdTime: 4000,
+    text: '',
+    grow: ''
+  }
+
+  componentDidMount = () => {
+    this.breathAnimation()
+    setInterval(this.breathAnimation, 18000)
+  }
+  
+
+  breathAnimation = () => {
+    console.log('ran')
+    const { breathTime, holdTime } = this.state;
+    this.breathIn()
+
+    setTimeout(() => {
+      this.holdBreath()
+      setTimeout(this.breathOut, holdTime)
+    }, breathTime)
+  }
+
+
+  breathOut = () => {
+    this.setState({
+      text: 'Breath Out',
+      grow: 'shrink'
+    })
+  }
+
+  breathIn = () => {
+    this.setState({
+      text: 'Breath In',
+      grow: 'grow'
+    })
+  }
+
+  holdBreath = () => {
+    this.setState({
+      text: 'Hold'
+    })
+  }
+
+
+  render() {
+    const {totalTime, breathTime, holdTime, text, grow} = this.state;
+    return (
+      <div className="App">
+        <PageTitle />
+        <ClockContainer message={text} grow={grow}/>
+      </div>
+    );
+  }
 }
+
+
 
 export default App;
