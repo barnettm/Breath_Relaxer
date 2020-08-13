@@ -32,14 +32,14 @@ class App extends React.Component {
 
   breathOut = () => {
     this.setState({
-      text: 'Breathe Out',
+      text: 'Exhale Slowly',
       grow: 'shrink'
     })
   }
 
   breathIn = () => {
     this.setState({
-      text: 'Breathe In',
+      text: 'Inhale Slowly',
       grow: 'grow'
     })
   }
